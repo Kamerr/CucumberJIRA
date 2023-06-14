@@ -9,4 +9,9 @@ public class LogoutPage extends BasePage{
 
     @FindBy(xpath = "//p[contains(.,'restored')]")
     public WebElement secondText;
+
+    @FindBy(xpath = "//h1[text()='Account Logout']")
+    public WebElement tittleText;
+    @FindBy(xpath = "//a[text()='Continue']")
+    public WebElement continueButton;
 }
