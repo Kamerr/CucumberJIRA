@@ -1,5 +1,6 @@
 package com.ourvirtualmarket.pages;
 
+import com.ourvirtualmarket.utilities.BrowserUtils;
 import com.ourvirtualmarket.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,21 +14,22 @@ public class DashboardPage extends BasePage{
     public String productTextInTheBasket;
     @FindBy(xpath = "//span[@class='icon-c']")
     public WebElement basketIcon;
+
+    @FindBy(xpath = "//a[text()=' Logout ']")
+    public WebElement logout;
+
     public void selectTab(String tab){
         Driver.get().findElement(By.xpath("(//a[contains(.,'"+tab+"')])[1]")).click();
     }
     public void hoverTheBasket(){
         Actions actions=new Actions(Driver.get());
         actions.moveToElement(basketIcon).perform();
-    }
-    public void CheckTheBasket(){
-        List<WebElement> elements = Driver.get().findElements(By.xpath(""));
-
+        BrowserUtils.waitFor(1);
     }
     public void validateTheProductIsInTheBasket(){
-        WebElement element = Driver.get().findElement(By.xpath("(//td[@class='text-left'])[1]"));
-        productTextInTheBasket= element.getText();
-        System.out.println("productTextInTheBasket = " + productTextInTheBasket);
+        for (WebElement element : Driver.get().findElements(By.xpath("(//table)[1]/tbody/tr/td[@class='text-left']"))) {
+            productTextInTheBasket= element.getText();
+        }
     }
 
 }

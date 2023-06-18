@@ -1,5 +1,6 @@
 package com.ourvirtualmarket.pages;
 
+import com.ourvirtualmarket.utilities.BrowserUtils;
 import com.ourvirtualmarket.utilities.ConfigurationReader;
 import com.ourvirtualmarket.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -34,6 +35,7 @@ public abstract class BasePage {
 
     public void login(){
         dashboard_login.click();
+        BrowserUtils.waitFor(1);
         emailInput.sendKeys(ConfigurationReader.get("emailS"));
         passwordInput.sendKeys(ConfigurationReader.get("passwordS"));
         loginWithEmailPassword.click();

@@ -2,6 +2,7 @@ package com.ourvirtualmarket.step_defs;
 
 import com.ourvirtualmarket.pages.DashboardPage;
 import com.ourvirtualmarket.pages.ProductsPage;
+import com.ourvirtualmarket.utilities.BrowserUtils;
 import com.ourvirtualmarket.utilities.ConfigurationReader;
 import com.ourvirtualmarket.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -48,13 +49,13 @@ public class AddToCard_stepDefs {
     @Then("Check the produck is displayed in the shopping basket")
     public void check_the_produck_is_displayed_in_the_shopping_basket() {
         dashboardPage.validateTheProductIsInTheBasket();
-        Assert.assertTrue(productsPage.productText.contains(dashboardPage.productTextInTheBasket));
+        BrowserUtils.waitFor(1);
+        Assert.assertEquals(productsPage.productText,dashboardPage.productTextInTheBasket);
+
     }
     @When("Click the {string} th. product")
     public void click_the_th_product(String line) {
         productsPage.chooseProduct(line);
-      //  WebElement element = productsPage.chooseProduct(line);
-      //  BrowserUtils.clickWithJS(element);
     }
 
     @Then("Validate add to card button isdisplayed")
@@ -75,9 +76,29 @@ public class AddToCard_stepDefs {
     }
     @Then("Validate product size")
     public void validate_product_size() {
-        int exp=productsPage.productSize.size();
+        BrowserUtils.waitFor(2);
+        int exp=productsPage.trashButtons.size();
         int act=productsPage.eklenenUrunSayisi;
         Assert.assertEquals(exp,act);
     }
+    @Then("Delete all items in cart")
+    public void delete_all_items_in_cart() {
+        productsPage.deleteCart();
+        BrowserUtils.waitFor(3);
+    }
+    @Then("Log out")
+    public void log_out() {
+       dashboardPage.logout.click();
+    }
 
+    @Then("Check if the product is still in the cart")
+    public void check_if_the_product_is_still_in_the_cart() {
+        System.out.println("*********");
+        System.out.println("productsPage.productText = " + productsPage.productText);
+        dashboardPage.validateTheProductIsInTheBasket();
+        System.out.println("dashboardPage.productTextInTheBasket = " + dashboardPage.productTextInTheBasket);
+        System.out.println("*********");
+        Assert.assertEquals(productsPage.productText,dashboardPage.productTextInTheBasket);
+
+    }
 }

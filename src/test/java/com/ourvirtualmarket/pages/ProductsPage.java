@@ -24,7 +24,7 @@ public class ProductsPage extends BasePage{
     public WebElement orderSubTotal;
 
     @FindBy(xpath = "//i[@class='fa fa-trash-o']")
-    public List<WebElement> productSize;
+    public List<WebElement> trashButtons;
 
     @FindBy(xpath = "//button[@class='close']")
     public WebElement closeButton;
@@ -34,13 +34,11 @@ public class ProductsPage extends BasePage{
         JavascriptExecutor js = (JavascriptExecutor) Driver.get();
         js.executeScript("window.scrollBy(0,500)", "");
 
-        WebElement element = Driver.get().findElement(By.xpath("(//div[@class='right-block'])[" + line + "]"));
+        WebElement element = Driver.get().findElement(By.xpath("(//div[@class='right-block'])[" + line + "]/h4"));
         Actions actions=new Actions(Driver.get());
         actions.moveToElement(element).perform();
         productText= element.getText();
         productLine=line;
-        System.out.println("productText = " + productText);
-        System.out.println("productLine = " + productLine);
         Driver.get().findElement(By.xpath("(//div[@class='product-image-container'])["+line+"]")).click();
         eklenenUrunSayisi++;
     }
@@ -64,10 +62,10 @@ public class ProductsPage extends BasePage{
         WebElement element = Driver.get().findElement(By.xpath("(//span[.='Add to Cart']/ancestor::button)["+productLine+"]"));
         element.click();
     }
-    public void addToCardProduct(){
-        addToCardButton.click();
-    }
-    public void buyNow(){
-        buyNowButton.click();
+    public void deleteCart(){
+        for (int i = trashButtons.size()-1; i >=0  ; i--) {
+            trashButtons.get(i).click();
+            eklenenUrunSayisi--;
+        }
     }
 }
