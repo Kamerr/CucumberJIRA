@@ -1,4 +1,4 @@
-@jira
+
 Feature: Quick View Functionality
 
 

@@ -16,13 +16,16 @@ import java.util.List;
         @FindBy(xpath = "//input[@id='button-cart']")
         public WebElement addToCart;
 
-        @FindBy(xpath = "//div[@class='button-group so-quickview cartinfo--left']")
+        @FindBy(xpath ="//span[text()='Quick view'][1]")
         public List<WebElement> quickviev;
 
-        @FindBy(xpath = "//a[text()='Nicky Clarke NHD146 Hair Therapy Touch Control Hai..']")
+        @FindBy(xpath = "(//span[contains(.,'Quick view')])[26]")
+        public WebElement qw1;
+
+        @FindBy(xpath ="//div[@class='caption'] //*[@title='Nicky Clarke NHD146 Hair Therapy Touch Control Hair Dryer']")
         public WebElement product1;
 
-        @FindBy(xpath = "//a[text()='Noerden Minimi Smart Body Scale']")
+        @FindBy(xpath = "")
         public WebElement product2;
 
 
