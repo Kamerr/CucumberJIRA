@@ -16,29 +16,17 @@ import java.util.List;
         @FindBy(xpath = "//input[@id='button-cart']")
         public WebElement addToCart;
 
-        @FindBy(xpath ="//div[@class='button-group so-quickview cartinfo--left']//span[text()='Quick view']")
+        @FindBy(xpath = "//div[@class='button-group so-quickview cartinfo--left']//span[text()='Quick view']")
         public List<WebElement> quickview;
-
 
 
         @FindBy(xpath = "//button[@class='close'][@data-dismiss='modal']")
         public WebElement closeButton;
 
 
-       public void hoverProduct(int num){
-           BrowserUtils.scrollToElement(quickview.get(num-1));
-           BrowserUtils.hover(quickview.get(num-1));
+        public void hoverProduct(int num) {
+            BrowserUtils.scrollToElement(quickview.get(num - 1));
+            BrowserUtils.hover(quickview.get(num - 1));
 
-       }
-
-
-
-
-
+        }
     }
-
-
-
-
-
-

@@ -1,12 +1,15 @@
 package com.ourvirtualmarket.step_defs;
 
 import com.ourvirtualmarket.pages.LoginPage;
+import com.ourvirtualmarket.pages.QvPage;
 import com.ourvirtualmarket.utilities.ConfigurationReader;
 import com.ourvirtualmarket.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
 public class Login_stepDefs {
+
+    QvPage qvPage=new QvPage();
     LoginPage loginPage=new LoginPage();
     @Given("The user goes to homepage")
     public void theUserGoesToHomepage() {
@@ -20,7 +23,7 @@ public class Login_stepDefs {
     }
 
     @When("The user logs in")
-    public void theUserLogsIn() {
+    public void theUserLogsIn() throws InterruptedException {
         loginPage.loginButton.click();
 loginPage.login();
     }

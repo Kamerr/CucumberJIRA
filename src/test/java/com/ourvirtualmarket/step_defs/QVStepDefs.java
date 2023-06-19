@@ -22,25 +22,26 @@ public class QVStepDefs {
 
     @Given(": user used the quick view feature")
     public void userUsedTheQuickViewFeature() throws InterruptedException {
-BrowserUtils.clickWithJS(qvPage.homebutton);
-BrowserUtils.clickWithJS(loginPage.popoupClose);
+        BrowserUtils.clickWithJS(qvPage.homebutton);
+        BrowserUtils.clickWithJS(loginPage.popoupClose);
 
-            qvPage.hoverProduct(1);
+        qvPage.hoverProduct(1);
     }
 
 
     @When(": user added new product to shopping cart")
     public void userAddedNewProductToShoppingCart() {
         BrowserUtils.clickWithJS(qvPage.quickview.get(0));
-            Driver.get().switchTo().frame(0);
-            BrowserUtils.clickWithJS(qvPage.addToCart);
-            Driver.get().switchTo().defaultContent();
-            qvPage.closeButton.click();
+        Driver.get().switchTo().frame(0);
+        BrowserUtils.clickWithJS(qvPage.addToCart);
+        Driver.get().switchTo().defaultContent();
+        qvPage.closeButton.click();
 
     }
 
     @Then(": price updated automatically")
     public void priceUpdatedAutomatically() {
+
 
     }
 

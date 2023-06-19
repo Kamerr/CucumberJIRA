@@ -7,7 +7,7 @@ Feature: Quick View Functionality
     Given The user goes to homepage
     When The user closes pop-up
     When The user logs in
-@jira
+  @B3VIR1-131 @jira
   Scenario: Login is Quick View
     Given : user used the quick view feature
     When : user added new product to shopping cart
