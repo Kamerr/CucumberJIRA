@@ -22,53 +22,20 @@ public class QVStepDefs {
 
     @Given(": user used the quick view feature")
     public void userUsedTheQuickViewFeature() throws InterruptedException {
-        try {
-            BrowserUtils.verifyElementDisplayed(Driver.get().findElement(By.xpath("//img[@alt='slide 3']")));
-            Thread.sleep(3000);
-            BrowserUtils.scrollToElement(qvPage.product1);
+BrowserUtils.clickWithJS(qvPage.homebutton);
+BrowserUtils.clickWithJS(loginPage.popoupClose);
 
-            //qvPage.product(1);
-            Actions actions= new Actions(Driver.get());
-            actions.moveToElement(qvPage.product1).perform();
-            actions.moveToElement(qvPage.qw1).click().perform();
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-
-            throw new RuntimeException(e);
-        }
-        //loginPage.popoupClose.click();
-
-
-
-        //actions.moveToElement(Driver.get().f
-        // indElement(By.xpath("//div[@class='button-group so-quickview cartinfo--left'][2]")));
-
-        //qvPage.selectProduct("2");
+            qvPage.hoverProduct(1);
     }
 
 
     @When(": user added new product to shopping cart")
     public void userAddedNewProductToShoppingCart() {
-        //BrowserUtils.waitFor(5);
-        try {
+        BrowserUtils.clickWithJS(qvPage.quickview.get(0));
             Driver.get().switchTo().frame(0);
-            BrowserUtils.scrollToElement(qvPage.product1);
-            qvPage.product(7);
-            qvPage.addToCart.click();
             BrowserUtils.clickWithJS(qvPage.addToCart);
             Driver.get().switchTo().defaultContent();
-
-        } catch (Exception e) {
-
-
-            BrowserUtils.scrollToElement(qvPage.product1);
-            qvPage.product(7);
-
-            qvPage.addToCart.click();
-            BrowserUtils.clickWithJS(qvPage.addToCart);
-
-        }
-        qvPage.closeButton.click();
+            qvPage.closeButton.click();
 
     }
 
@@ -79,11 +46,20 @@ public class QVStepDefs {
 
     @And(": user secon product to edit")
     public void userSeconProductToEdit() {
-        BrowserUtils.scrollToElement(qvPage.product2);
-        qvPage.product(7);
+
+        qvPage.hoverProduct(5);
 
 
     }
 
 
+    @And(": user added second product to shopping cart")
+    public void userAddedSecondProductToShoppingCart() {
+        BrowserUtils.clickWithJS(qvPage.quickview.get(4));
+        Driver.get().switchTo().frame(0);
+        BrowserUtils.clickWithJS(qvPage.addToCart);
+        Driver.get().switchTo().defaultContent();
+        qvPage.closeButton.click();
+
+    }
 }

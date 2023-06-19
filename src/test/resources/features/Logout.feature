@@ -1,4 +1,4 @@
-@jira
+
 Feature: Logout Functionality
   Background:
     Given The user goes to homepage

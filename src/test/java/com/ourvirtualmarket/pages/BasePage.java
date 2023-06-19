@@ -16,5 +16,8 @@ public abstract class BasePage {
     @FindBy(xpath = "//a[text()=' Logout ']")
     public WebElement logoutButton;
 
+    @FindBy(xpath = "//strong[contains(.,'Home')]")
+    public WebElement homebutton;
+
 
 }
