@@ -1,13 +1,25 @@
 package com.ourvirtualmarket.pages;
 
+import com.ourvirtualmarket.utilities.BrowserUtils;
+import com.ourvirtualmarket.utilities.Driver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.Map;
+
+import static org.openqa.selenium.Keys.*;
 
 public class CheckOutPage extends BasePage{
 
-    @FindBy(xpath = "//a[text()=' Logout ']")
-    private WebElement logOutButton;
-    //Billing Details
+    @FindBy(xpath = "//h1[text()='Checkout']")
+    private WebElement checkoutText;
+
+    public WebElement getCheckoutText() {
+        return checkoutText;
+    }
+       //Billing Details
     @FindBy(xpath = "//input[@value='existing']")
     private WebElement billingExistingAddress;
 
@@ -35,15 +47,20 @@ public class CheckOutPage extends BasePage{
     @FindBy(xpath = "//input[@id='input-payment-postcode']")
     private WebElement billingPostCode;
 
+    @FindBy(xpath = "//select[@id='input-payment-country']")
+    private WebElement billingCountry;
 
+    @FindBy(xpath = "//input[@value='new'][@name='payment_address']")
+    private WebElement billingNewAddress;
     @FindBy(xpath="//input[@id='button-payment-address']")
     private WebElement billingDetailsContinue;
-
+    @FindBy(xpath="//div[@class='pull-right']//input[@id='button-payment-address']")
+    public WebElement billingContinueBtn;
     @FindBy(xpath = "//select[@id='input-payment-zone']")
     private WebElement billingRegionState;
 
-    @FindBy(xpath="//select[@id='input-payment-country']")
-    private WebElement billingContinue;
+    @FindBy(xpath="//input[@id='button-payment-address']")
+    public WebElement billingContinue;
 
     //Delivery Details
     @FindBy(xpath = "//input[@name='shipping_address'][@value='existing']")
@@ -76,15 +93,15 @@ public class CheckOutPage extends BasePage{
     @FindBy(xpath = "//select[@id='input-shipping-zone']")
     private WebElement deliveryRegionState;
 
-    @FindBy(xpath = "button-shipping-address")
+    @FindBy(xpath = "//input[@id='button-shipping-address']")
     private WebElement deliveryContinueButton;
 
     //Delivery Method
-    @FindBy(xpath = "//input[@value='flat.flat']")
+    @FindBy(xpath = "//input[@name='shipping_method'][@type='radio']")
     private WebElement deliveryflat;
 
     @FindBy(xpath = "(//textarea[@name='comment'])[1]")
-    private WebElement addComment;
+    private WebElement deliveryAddComment;
 
     @FindBy(xpath = "//input[@id='button-shipping-method']")
     private WebElement deliveryMethodContinue;
@@ -105,9 +122,17 @@ public class CheckOutPage extends BasePage{
     @FindBy(xpath = "//input[@id='button-confirm']")
     private WebElement confirmOrder;
 
-    public WebElement getLogOutButton() {
-        return logOutButton;
-    }
+    @FindBy(xpath = "//strong[text()='Total:']")
+    private WebElement total;
+    @FindBy(xpath = "//a[text()='Step 3: Delivery Details ']")
+    public WebElement DeliveryDetails;
+    @FindBy(xpath = "//a[text()='Step 2: Billing Details ']")
+    public WebElement BillingDetails;
+
+
+
+    @FindBy(xpath = "//input[@id='button-account']")
+    public WebElement optionsContinue;
 
     public WebElement getBillingExistingAddress() {
         return billingExistingAddress;
@@ -145,17 +170,15 @@ public class CheckOutPage extends BasePage{
         return billingPostCode;
     }
 
-    public WebElement getBillingDetailsContinue() {
-        return billingDetailsContinue;
+    public WebElement getBillingContinue() {
+        return billingContinue;
     }
 
     public WebElement getBillingRegionState() {
         return billingRegionState;
     }
 
-    public WebElement getBillingContinue() {
-        return billingContinue;
-    }
+
 
     public WebElement getDeliveryExistingAddress() {
         return deliveryExistingAddress;
@@ -205,8 +228,8 @@ public class CheckOutPage extends BasePage{
         return deliveryflat;
     }
 
-    public WebElement getAddComment() {
-        return addComment;
+    public WebElement getDeliveryAddComment() {
+        return deliveryAddComment;
     }
 
     public WebElement getDeliveryMethodContinue() {
@@ -231,5 +254,29 @@ public class CheckOutPage extends BasePage{
 
     public WebElement getConfirmOrder() {
         return confirmOrder;
+    }
+
+    public WebElement getBillingCountry() {
+        return billingCountry;
+    }
+
+    public WebElement getBillingNewAddress() {
+        return billingNewAddress;
+    }
+
+    public WebElement getTotal() {
+        return total;
+    }
+    public void makecheckout(){
+       getBillingFirstName().sendKeys("Kamer");
+        getBillingLastName().sendKeys("Aypay");
+        getBillingCompany().sendKeys("Zero");
+        getBillingAddress1().sendKeys("a mahallesi");
+        getBillingAddress2().sendKeys("b mahallesi");
+        getBillingCity().sendKeys("Konya");
+        getBillingPostCode().sendKeys("42000");
+        getBillingCountry().sendKeys("Turkey");
+        getBillingRegionState().sendKeys("Konya");
+        BrowserUtils.waitFor(2);
     }
 }
