@@ -10,7 +10,7 @@ import org.junit.Assert;
 
 import java.util.List;
 
-public class AddToCart_StepDefs {
+public class AddtToCart2_StepDefs {
 
     CartProductsPage cartProductsPage = new CartProductsPage();
     ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
